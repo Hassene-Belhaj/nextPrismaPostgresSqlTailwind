@@ -11,7 +11,7 @@ const Navbar = () => {
 
       <div className="flex-1">
         <Link href={"/"}>
-          <h2 className="text-indigo-800 text-bold text-xl">Cloud Hosting</h2>
+          <h2 className="text-gray-800 text-bold text-xl">Cloud Hosting</h2>
         </Link>
       </div>
 
@@ -23,10 +23,10 @@ const Navbar = () => {
           {/* <Link href={"/"}>Admin Dashboard</Link> */}
         </ul>
         <div className="flex items-center gap-4">
-          <Link href={"/signin"} className="w-20 h-8 px-12 bg-gray-800 rounded-3xl flex justify-center items-center text-white hover:opacity-90">
+          <Link href={"/signin"} className="w-20 h-8 px-12 bg-gray-800 rounded-3xl flex justify-center items-center text-white hover:opacity-80 transition duration-300 ease-in-out">
             Login
           </Link>
-          <Link href={"/signup"} className="w-20 h-8 px-12 bg-white rounded-3xl flex justify-center items-center text-gray-800 border-2 border-gray-800  hover:opacity-90 transition-all duration-300 ease-in-out">
+          <Link href={"/signup"} className="w-20 h-8 px-12 bg-white rounded-3xl flex justify-center items-center text-gray-800 border-2 border-gray-800  hover:opacity-80 transition duration-300 ease-in-out">
             Register
           </Link>
         </div>

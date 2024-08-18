@@ -1,10 +1,9 @@
-import { IRegister } from "@/utils/types/Types";
-import { PrismaClient } from "@prisma/client";
+import { Ijwtpayload, IRegister } from "@/utils/types/Types";
+import prisma from "@/utils/prismaDb";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
-
-const prisma = new PrismaClient();
+import {setCookie } from "@/utils/generateToken";
 
 /* 
 @method 
@@ -54,8 +53,20 @@ export async function POST(request: NextRequest) {
         isAdmin: true,
       },
     });
-    return NextResponse.json({ message: "user created with success ", newUser }, { status: 201 });
+
+    //*
+    // const JwtPayload: Ijwtpayload = {
+    //   id: newUser.id,
+    //   email: newUser.email,
+    //   isAdmin: newUser.isAdmin,
+    // };
+
+    // const cookie = setCookie(JwtPayload);
+    //*
+
+    // return NextResponse.json({ message: "user created with success ", newUser }, { status: 201 , headers : {"set-cookie" : cookie}});
+    return NextResponse.json({ message: "user created with success ", newUser }, { status: 201});
   } catch (error) {
-    return NextResponse.json({ message: "internal servor error" }, { status: 500 });
+    return NextResponse.json({ message: "internal server error" }, { status: 500 });
   }
 }
