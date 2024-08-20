@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const handleSubmit = (e:React.FormEvent) =>  {
     e.preventDefault()
-    toast.success('lorem ipsum user')
+    toast.success('lorem ipsum user' , {position : 'bottom-right'})
 } 
 
 

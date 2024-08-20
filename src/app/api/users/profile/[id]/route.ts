@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prismaDb";
-import { Verifytoken } from "@/utils/verifyToken";
-import { IupdateUser } from "@/utils/types/Types";
+import { VerifyToken } from "@/utils/verifyToken";
+import { Iparams, IupdateUser } from "@/utils/types/Types";
 import bcrypt from 'bcryptjs'
 
 /* 
@@ -11,23 +11,23 @@ desc   delete
 access  private //*
 */
 
-interface Iprops {
-  params: {
-    id: string;
-  };
-}
 
-export async function DELETE(request: NextRequest, { params }: Iprops) {
+export async function DELETE(request: NextRequest, { params }: Iparams) {
   const {id} = params ;
   try {
     const findUser = await prisma.user.findUnique({ where: { id: parseInt(params.id) } });
 
     if (!findUser) return NextResponse.json({ message: "can not find this user" }, { status: 400 });
 
-    const verifyAccessToken = Verifytoken(request);
+    const user = VerifyToken(request);
 
-    if (verifyAccessToken !== null && verifyAccessToken.id === findUser.id) {
-      await prisma.user.delete({ where: { id: parseInt(id) } });
+    if (user !== null && user.id === findUser.id) {
+      
+      const DeleteArticle = await prisma.user.delete({ where: { id: parseInt(id) } , include : {comments : true} });
+
+      const commentsIds = DeleteArticle.comments.map((c) =>c.id) 
+      await prisma.comment.deleteMany({where : {id : {in : commentsIds}}}) //*
+
       return NextResponse.json({ message: "your account has been deleted with success" }, { status: 200 });
     } else {
       return NextResponse.json({ message: "Sorry , you can delete Only your account" }, { status: 401 });
@@ -44,7 +44,7 @@ desc   Get profile
 access  private //*
 */
 
-export async function GET(request: NextRequest, { params }: Iprops) {
+export async function GET(request: NextRequest, { params }: Iparams) {
   const { id } = params;
   try {
     const findUser = await prisma.user.findUnique({ 
@@ -58,9 +58,9 @@ export async function GET(request: NextRequest, { params }: Iprops) {
     });
     if (!findUser) return NextResponse.json({ message: "can not find user" }, { status: 404 });
 
-    const verifyAccessToken = Verifytoken(request);
+    const user = VerifyToken(request);
 
-    if (verifyAccessToken === null || verifyAccessToken.id !== parseInt(id)) {
+    if (user === null || user.id !== parseInt(id)) {
       return NextResponse.json({ message: "you are not allowed , access denied" }, { status: 403 });
     }
 
@@ -81,16 +81,16 @@ access  private //*
 
 
 
-export async function PUT (request : NextRequest , {params} : Iprops) {
+export async function PUT (request : NextRequest , {params} : Iparams) {
    const {id} = params ;
    let {newUsername , newEmail , newPassword} = await request.json() as IupdateUser ;
   try {
     const findUser = await prisma.user.findUnique({where : {id : parseInt(id)}})
     if(!findUser) return NextResponse.json({message : "can not find user"} , {status : 404})
    
-    const verifyAccessToken = Verifytoken(request)  
+    const user = VerifyToken(request)  
 
-    if(verifyAccessToken === null || verifyAccessToken.id !== parseInt(id)) {
+    if(user === null || user.id !== parseInt(id)) {
       return NextResponse.json({message : 'you are not allowed to update this account data'} , {status : 403})
     }
 

@@ -7,11 +7,11 @@ import { FiMenu } from "react-icons/fi";
 const Navbar = () => {
   return (
     <nav>
-      <div className="hidden md:flex h-20 w-full px-8 bg-gray-100 shadow-sm  justify-between items-center">
+      <div className="hidden md:flex h-20 w-full px-8 bg-slate-100 shadow-md  justify-between items-center">
 
       <div className="flex-1">
         <Link href={"/"}>
-          <h2 className="text-gray-800 text-bold text-xl">Cloud Hosting</h2>
+          <h2 className="text-black font-semibold text-2xl">Cloud Hosting</h2>
         </Link>
       </div>
 

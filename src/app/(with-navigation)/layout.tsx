@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
+import SearchaBar from "@/components/SearchaBar"
 
 
 
@@ -13,7 +14,7 @@ const layout = ({children} : Ichildren) => {
         <main>
             <Navbar/>
             {children}
-            <Footer />
+            {/* <Footer /> */}
         </main>
     </div>
   )

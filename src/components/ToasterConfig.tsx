@@ -27,7 +27,7 @@ const ToasterConfig = () => {
       style: {
         fontFamily: "Roboto, sans-serif",
         fontWeight: "500",
-        background: "#dcfce7",
+        background: "#E5E7EB",
         padding: "1rem",
         textTransform: "capitalize",
         display: "flex",

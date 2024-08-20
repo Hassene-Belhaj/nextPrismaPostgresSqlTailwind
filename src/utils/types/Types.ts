@@ -1,3 +1,9 @@
+export interface Iparams {
+  params : {
+    id : string
+  }
+}
+
 export interface IRegister {
   email: string;
   username: string;
@@ -20,3 +26,19 @@ export interface Ijwtpayload {
   email: string;
   isAdmin: boolean;
 }
+
+export interface Icomment {
+  text : string
+  articleId : number
+}
+
+export interface Ieditcomment {
+  newText : string
+}
+
+export interface IeditArticle {
+  newTitle  :string ,
+  newDescription : string ,
+  
+}
+
