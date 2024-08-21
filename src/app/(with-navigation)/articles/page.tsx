@@ -1,6 +1,7 @@
 import ArticlesItems from "@/components/ArticlesItems";
 import Pagination from "@/components/Pagination";
-import SearchaBar from "@/components/SearchaBar";
+import { PaginationSection } from "@/components/PaginationSection";
+import SearchForm from "@/components/SearchForm";
 import AnimationWrapper from "@/utils/AnimationWrapper";
 import { Article } from "@prisma/client";
 
@@ -42,19 +43,20 @@ const Articles = async ({searchParams} : IsearchParams) => {
   const {page} = searchParams ; 
   const data: Article[] | undefined = await allArticles(page);
   const count = await countPages()
-  const NbrOfPages = Math.ceil(Number(count) / 6)  //* 6 per page
-  console.log(page)
+  const NbrOfPages = Math.ceil(Number(count) / 9)  //* 6 per page
 
   return (
-     <AnimationWrapper initial={{opacity : 0}} animate={{opacity : 1}} transition={{duration : 0.3}} exit={{opacity : 0}}>
-      <SearchaBar />
-    <div className="min-h-[calc(100vh_-_160px)]">
-      <section className="mt-8 p-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-8">
+     <AnimationWrapper initial={{opacity : 0}} animate={{opacity : 1}} transition={{duration : .3}} exit={{opacity : 0}} key={page}>
+      <SearchForm />
+    <div className="min-h-[calc(100vh_-_160px)] max-h-full">
+      <section className="mt-8 p-8 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {data && data.map((article: Article, i: number) => {
         return <ArticlesItems key={i} article={article} />;
       })}
       </section>
-      <Pagination page={parseInt(page)} NbrOfPages={NbrOfPages} route='/articles' />
+      <Pagination page={parseInt(page) || 1} NbrOfPages={NbrOfPages} route='/articles' />
+      {/* shadcn-ui */}
+      {/* <PaginationSection page={parseInt(page) || 1} NbrOfPages={NbrOfPages} route='/articles'  /> */}
     </div>
       </AnimationWrapper>
   );

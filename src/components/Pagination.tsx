@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface IpaginationProps {
   page: number;
@@ -15,28 +16,33 @@ const Pagination = ({ page, NbrOfPages, route }: IpaginationProps) => {
     Array.push(i);
   }
 
-  const prev = page === 1 ? Array.length : page - 1 ; 
-  const next = page === Array.length ? 1 : page + 1 ;
+  const prev = page === 1 ? Array.length : page - 1;
+  const next = page === Array.length ? 1 : page + 1;
 
   return (
     <section className="w-full p-24">
-      <div className="w-full justify-center flex gap-[2px]">
+      <div className="w-full justify-center flex gap-[4px]">
         <Link href={`${route}?page=${prev}`}>
-          <button className="border-2 border-gray-800 w-16 h-8">Prev</button>
+          <button className="w-16 h-8 px-2 flex  justify-end items-center relative hover:bg-slate-100 rounded-lg font-semibold text-sm">
+            <FaChevronLeft size={10} className="absolute left-[2px] top-1/2 -translate-y-1/2" />
+            Prev
+          </button>
         </Link>
 
-        {Array.map((page, i) => {
+        {Array.map((pageNbr, i) => {
           return (
-            <div key={i}>
-              <Link href={`${route}?page=${page}`}>
-                <button className="border-2 border-gray-800 w-8 h-8">{page}</button>
+            <div key={i} className={`${pageNbr === page ? "bg-slate-200 rounded-lg" : null}`}>
+              <Link href={`${route}?page=${pageNbr}`}>
+                <button className="border-none w-8 h-8">{pageNbr}</button>
               </Link>
             </div>
           );
-
         })}
         <Link href={`${route}?page=${next}`}>
-          <button className="border-2 border-gray-800 w-16 h-8">Next</button>
+          <button className="w-16 h-8 px-2 flex justify-start items-center relative hover:bg-slate-100 rounded-lg font-semibold text-sm">
+            <FaChevronRight size={10} className="absolute right-[2px] top-1/2 -translate-y-1/2" />
+            Next
+          </button>
         </Link>
       </div>
     </section>

@@ -1,14 +1,24 @@
 "use client"
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
 
 const Navbar = () => {
-  return (
-    <nav>
-      <div className="hidden md:flex h-20 w-full px-8 bg-slate-100 shadow-md  justify-between items-center">
+ const [navScroll , setNavScroll] =  useState(false)
 
+  useEffect(()=>{
+    const handle = () => {
+      window.scrollY > 60 ? setNavScroll(true) : setNavScroll(false)
+    }
+    document.addEventListener("scroll" , handle) ;
+    return () => document.removeEventListener("scroll" , handle)
+  },[])
+
+  return (
+    <nav className={`${navScroll ? "w-full fixed z-50 bg-slate-100 shadow-lg" : "w-full fixed z-50  bg-white"}`} >
+      <div className="hidden md:flex h-20 w-full px-8 justify-between items-center">
       <div className="flex-1">
         <Link href={"/"}>
           <h2 className="text-black font-semibold text-2xl">Cloud Hosting</h2>

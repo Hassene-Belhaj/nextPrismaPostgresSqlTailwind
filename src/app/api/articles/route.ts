@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
   try {
     const Page = request.nextUrl.searchParams.get("page") || "1";
 
-    const Article_Per_Page = 6;                            //*
+    const Article_Per_Page = 9;                            //*
     let Skip = Article_Per_Page * (parseInt(Page) - 1);   //*
 
     const allArticles = await prisma.article.findMany({ skip: Skip, take: Article_Per_Page });
