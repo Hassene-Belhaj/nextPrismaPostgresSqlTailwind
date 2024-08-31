@@ -5,6 +5,14 @@ import prisma from "@/utils/prismaDb";
 
 
 
+/*
+@method   PUT
+@route    ~/api/articles/id
+@desc     update Article
+@access   private
+*/
+
+
 export async function PUT(request: NextRequest, { params }: Iparams) {
   const { id } = params;
   const { newTitle, newDescription } = (await request.json()) as IeditArticle;
@@ -21,11 +29,21 @@ export async function PUT(request: NextRequest, { params }: Iparams) {
         description: newDescription || findArticle.description,
       },
     });
-    return NextResponse.json({ message: "Article Deleted with success" }, { status: 200 });
+    return NextResponse.json({ message: "Article Updated with success" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
+
+
+
+/*
+@method   GET
+@route    ~/api/articles/id
+@desc     get single article include comments & user info
+@access   public
+*/
+
 
 export async function GET(request: NextRequest, { params }: Iparams) {
   const { id } = params;
@@ -56,6 +74,13 @@ export async function GET(request: NextRequest, { params }: Iparams) {
   }
 }
 
+
+/*
+@method   DELETE
+@route    ~/api/articles/id
+@desc     delete single article with comments 
+@access   private
+*/
 
 export async function DELETE(request: NextRequest, { params }: Iparams) {
   const { id } = params;

@@ -33,6 +33,14 @@ export async function POST(request: NextRequest) {
   }
 }
 
+
+/*
+ @method  GET
+ @route   ~/api/comment
+ @desc    get comments
+ @access  public
+ */
+
 export async function GET(request: NextRequest) {
   try {
     const user = VerifyToken(request);

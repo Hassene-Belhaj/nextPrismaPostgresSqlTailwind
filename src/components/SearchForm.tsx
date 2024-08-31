@@ -14,10 +14,10 @@ const SearchaBar = () => {
   }
 
   return (
-    <section className="w-full pt-32 pb-8">
+    <section className="w-full pt-24 pb-4">
             <form onSubmit={handleSubmitSearch}>
                <div className="xs:w-[250px] sm:w-[350px] md:w-[500px] lg:w-[900px] h-12 rounded-full mx-auto relative">
-                  <input value={searchText} onChange={(e)=>setSearchText(e.target.value)} type="text" className="bg-slate-100 outline-none border-2 border-slate-200 w-full h-full rounded-full pl-4 pr-8 placeholder:text-black/80 focus:border-2 focus:border-slate-500 transition focus:duration-300 focus:ease-in-out "  placeholder="Search for article" />
+                  <input name="input search form" value={searchText} onChange={(e)=>setSearchText(e.target.value)} type="text" className="bg-slate-100 outline-none border-2 border-slate-200 w-full h-full rounded-full pl-4 pr-8 placeholder:text-black/80 focus:border-2 focus:border-slate-500 transition focus:duration-300 focus:ease-in-out "  placeholder="Search for article" />
                   <button className="w-8 h-full absolute top-1/2  -translate-y-1/2 right-4 flex justify-center items-center"> 
                     <AiOutlineSearch  size={25}/>
                   </button>

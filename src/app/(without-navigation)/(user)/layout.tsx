@@ -1,9 +1,9 @@
 
 
-
 interface Ichildren  {
     children : React.ReactNode
 }
+
 
 const layout = ({children} : Ichildren) => {
   return (

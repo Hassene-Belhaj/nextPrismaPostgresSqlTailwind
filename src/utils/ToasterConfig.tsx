@@ -18,16 +18,16 @@ const ToasterConfig = () => {
   return (
     <Toaster
     reverseOrder={false}
-    position="top-right"
-    containerStyle={{
-      top : "100px"
-    }}
+    position="bottom-right"
+    // containerStyle={{
+    //   top : "100px"
+    // }}
     toastOptions={{
       duration: 3000,
       style: {
         fontFamily: "Roboto, sans-serif",
         fontWeight: "500",
-        background: "#E5E7EB",
+        background: "#c7d2fe",
         padding: "1rem",
         textTransform: "capitalize",
         display: "flex",

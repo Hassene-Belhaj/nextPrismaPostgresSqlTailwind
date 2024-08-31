@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
-import SearchaBar from "@/components/SearchaBar"
+import { Ijwtpayload, IuserJwtPayload } from "@/utils/types/Types"
+import { VerifyTokenPage } from "@/utils/verifyToken"
+import { cookies } from "next/headers"
 
 
 
@@ -9,14 +11,15 @@ interface Ichildren  {
 }
 
 const layout = ({children} : Ichildren) => {
+  const token = cookies().get('access_token')?.value as string | ""
+  const user = VerifyTokenPage(token) as IuserJwtPayload | null;
+
   return (
-    <div>
         <main>
-            <Navbar/>
+            <Navbar user={user}/>
             {children}
             {/* <Footer /> */}
         </main>
-    </div>
   )
 }
 

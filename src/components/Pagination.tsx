@@ -20,7 +20,7 @@ const Pagination = ({ page, NbrOfPages, route }: IpaginationProps) => {
   const next = page === Array.length ? 1 : page + 1;
 
   return (
-    <section className="w-full p-24">
+    <section className="w-full h-16 p-32">
       <div className="w-full justify-center flex gap-[4px]">
         <Link href={`${route}?page=${prev}`}>
           <button className="w-16 h-8 px-2 flex  justify-end items-center relative hover:bg-slate-100 rounded-lg font-semibold text-sm">
