@@ -14,10 +14,8 @@ interface IuserProps {
 }
 
 const Navbar = ({ user }: IuserProps) => {
-  // console.log(user);
 
   const pathname = usePathname();
-  // console.log(pathname);
 
   const [navScroll, setNavScroll] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -47,13 +45,13 @@ const Navbar = ({ user }: IuserProps) => {
     <nav className={`${navScroll ? "w-full fixed z-50 bg-slate-100 shadow-lg" : "w-full fixed z-50  bg-white"}`}>
       {/* <motion.div className="absolute top-[80px] w-full h-[2px] bg-indigo-950 origin-left" style={{scaleX : scrollYProgress}}></motion.div> */}
       <div className="hidden md:flex px-8 h-20 w-full justify-between items-center relative">
-        <div className="flex-1">
+        <div className="xl:flex-none xl:w-1/3 lg:flex-none w-1/4">
           <Link href={"/"}>
-            <h2 className="text-indigo-950 font-semibold text-2xl">Cloud Hosting</h2>
+            <h2 className="text-indigo-950 font-semibold text-xl">Cloud Hosting</h2>
           </Link>
         </div>
 
-        <div className="flex-1 flex  justify-between items-center gap-8">
+        <div className="flex-1 flex justify-between items-center gap-4">
           <ul className="flex gap-8 font-[500]">
             <Link href={"/"} className={pathname === "/" ? "text-indigo-700" : ""}>
               Home
@@ -64,10 +62,11 @@ const Navbar = ({ user }: IuserProps) => {
             <Link href={"/about"} className={pathname === "/about" ? "text-indigo-700" : ""}>
               About
             </Link>
-            <Link href={"/admin"} className={pathname === "/admin" ? "text-indigo-700" : ""}>
-              Dashboard
+             {user?.isAdmin && (
+            <Link href={"/admin"} className={pathname === "/admin" ? "text-indigo-700" : "" }>
+              Admin Dashboard
             </Link>
-            {/* <Link href={"/"}>Admin Dashboard</Link> */}
+             )}
           </ul>
           {!user ? (
             <div className="flex items-center gap-4">
@@ -80,7 +79,7 @@ const Navbar = ({ user }: IuserProps) => {
             </div>
           ) : (
             <div className="flex justify-start items-center gap-4">
-              <h4>{user.email}</h4>
+              <h4 className="text-sm font-semibold lg:block md:hidden">{user.email}</h4>
               <LogOutButton />
             </div>
           )}
