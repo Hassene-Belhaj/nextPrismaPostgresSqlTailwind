@@ -1,1 +1,1 @@
-export const Domain = "http://localhost:3000/api"
+export const Domain = "http://localhost:3000/"

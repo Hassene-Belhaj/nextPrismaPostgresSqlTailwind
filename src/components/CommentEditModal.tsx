@@ -34,7 +34,7 @@ const CommentEditModal = ({ loading , comment, openEdit, setOpenEdit, handleEdit
     <AnimatePresence>
       {openEdit && (
         <div className="fixed w-full h-screen inset-0 bg-black/80 z-50 flex justify-center items-center ">
-          <motion.div initial={{ opacity: 1, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} exit={{ opacity: 1, y: 25 , transition: { duration: 0.2 } }} className="w-1/2 pt-4 pb-8 px-6 bg-gray-200 rounded-lg relative">
+          <motion.div initial={{ opacity: 1, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} exit={{ opacity: 1, y: 25 , transition: { duration: 0.2 } }} className="mx-4 xs:w-full md:w-1/2 lg:w-1/2 xl:w-1/3 pt-4 pb-8 px-6 bg-gray-200 rounded-lg relative">
             <div className="flex justify-between items-center">
               <h5 className="font-semibold">{comment.user.username}</h5>
               <button onClick={() => setOpenEdit(!openEdit)} type="button">

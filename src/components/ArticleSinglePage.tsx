@@ -4,7 +4,7 @@ import React from "react";
 import ArticleComments from "./ArticleComments";
 import CommentFormInput from "./CommentFormInput";
 import { FaComment } from "react-icons/fa";
-import { ArticleUserComment, CommentWithUser, IuserJwtPayload } from "@/utils/types/Types";
+import { ArticleUserComment, IuserJwtPayload } from "@/utils/types/Types";
 
 interface IsingleArticle {
   article: ArticleUserComment;
@@ -33,7 +33,7 @@ const ArticleSinglePage = ({ article , user}: IsingleArticle) => {
         </div>
       </section>
       <section className="flex flex-col gap-8">
-      {article.comments.map((comment : CommentWithUser , index : number) => {
+      {article.comments.map((comment : any , index : number) => {
         return (
           <ArticleComments key={index} comment={comment} user={user} />
         )

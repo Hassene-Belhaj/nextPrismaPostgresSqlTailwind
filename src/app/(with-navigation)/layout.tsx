@@ -18,7 +18,7 @@ const layout = ({children} : Ichildren) => {
         <main>
             <Navbar user={user}/>
             {children}
-            {/* <Footer /> */}
+            <Footer />
         </main>
   )
 }

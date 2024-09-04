@@ -1,7 +1,11 @@
-import ArticleSingleSkeleton from "@/components/ArticleSingleSkeleton"
+import ArticleSingleSkeleton from "@/components/ArticleSingleSkeleton";
 
 const loading = () => {
-  return <ArticleSingleSkeleton/>
-}
+  return (
+    <section className="min-h-[calc(100vh_-_64px)] max-h-full">
+      <ArticleSingleSkeleton />
+    </section>
+  );
+};
 
-export default loading
+export default loading;

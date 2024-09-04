@@ -10,6 +10,7 @@ interface IpaginationProps {
 }
 
 const Pagination = ({ page, NbrOfPages, route }: IpaginationProps) => {
+
   let Array: number[] = [];
 
   for (let i = 1; i <= NbrOfPages; i++) {

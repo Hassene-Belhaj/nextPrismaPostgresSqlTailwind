@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     const Article_Per_Page = 6;                            //*
     let Skip = Article_Per_Page * (parseInt(Page) - 1);   //*
 
-    const allArticles = await prisma.article.findMany({ skip: Skip, take: Article_Per_Page });
+    const allArticles = await prisma.article.findMany({ skip: Skip, take: Article_Per_Page , orderBy : { createdAt : "desc"} });
 
     if (!allArticles) return NextResponse.json({ message: "not found" }, { status: 404 });
     return NextResponse.json(allArticles, { status: 200 });

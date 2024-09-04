@@ -3,7 +3,7 @@ import AnimationWrapper from "@/utils/AnimationWrapper";
 const About = () => {
   return (
     <AnimationWrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} exit="exit">
-      <section className="w-full m-auto py-36 max-w-[800px] px-8">
+      <section className="w-full min-h-[calc(100vh_-_64px)] max-h-full m-auto py-36 max-w-[800px] px-8">
         <h2 className="text-5xl">About</h2>
         <p className="py-8">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio nobis placeat ipsa ut voluptates assumenda ex! Sequi repudiandae fugiat est eveniet deleniti? Possimus ullam, eaque architecto expedita minus et quisquam omnis aperiam obcaecati, debitis vero cupiditate. Quos excepturi

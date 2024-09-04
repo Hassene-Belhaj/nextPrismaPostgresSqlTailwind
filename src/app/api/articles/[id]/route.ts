@@ -22,7 +22,7 @@ export async function PUT(request: NextRequest, { params }: Iparams) {
     if (user.isAdmin === false) return NextResponse.json({ message: "only Admin can Delete Article , access denied" }, { status: 403 });
     const findArticle = await prisma.article.findUnique({ where: { id: parseInt(id) } });
     if (!findArticle) return NextResponse.json({ message: "Article not found" });
-    const editArticle = await prisma.article.update({
+     await prisma.article.update({
       where: { id: parseInt(id) },
       data: {
         title: newTitle || findArticle.title,

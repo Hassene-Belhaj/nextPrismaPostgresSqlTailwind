@@ -1,3 +1,4 @@
+import { allArticles, countPages } from "@/apiCalls/ApiCalls";
 import ArticlesItems from "@/components/ArticlesItems";
 import Pagination from "@/components/Pagination";
 import SearchForm from "@/components/SearchForm";
@@ -10,33 +11,12 @@ interface IsearchParams {
   };
 }
 
-async function countPages(): Promise<number | undefined> {
-  try {
-    const response = await fetch("http://localhost:3000/api/articles/count");
-    if (!response.ok) throw new Error("failed to get count of pages");
-    const count = await response.json();
-    return count.count;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
-async function allArticles(page: string): Promise<Article[] | undefined> {
-  try {
-    const response = await fetch(`http://localhost:3000/api/articles?page=${page || 1}`);
-    if (!response.ok) {
-      throw new Error("failed to fetch Articles");
-    }
-    const data: Article[] = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+
 
 const Articles = async ({ searchParams }: IsearchParams) => {
   //*
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve ,300));
 
   const { page } = searchParams;
   const data: Article[] | undefined = await allArticles(page);
@@ -44,9 +24,9 @@ const Articles = async ({ searchParams }: IsearchParams) => {
   const NbrOfPages = Math.ceil(Number(count) / 6); //* 6 per page
 
   return (
-    <section>
+    <section className="min-h-[calc(100vh_-_64px)] max-h-full">
       <SearchForm />
-      <div className="min-h-[calc(100vh_-_160px)] max-h-full">
+      <div>
         <AnimationWrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 , ease: "easeInOut" }} exit={{ opacity: 0 }} key={page}>
           <section className="mt-4 p-4 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
             {data &&

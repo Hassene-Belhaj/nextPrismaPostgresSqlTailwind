@@ -4,7 +4,7 @@ import { Domain } from "@/utils/domain";
 import { CommentWithUser, IuserJwtPayload } from "@/utils/types/Types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import {AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import moment from 'moment'
@@ -30,7 +30,7 @@ const ArticleComments = ({ comment, user }: IcommentProps) => {
 
       if (comment.userId !== user.id) return toast.error("this comment is not posted by you");
       if(confirm("Are you sure to delete this comment ?")) {
-        const data = await axios.delete(`${Domain}/comments/${comment.id}`);
+        const data = await axios.delete(`${Domain}/api/comments/${comment.id}`);
         if (data.status === 200) {
           // toast.success(data.data.message)
           navigate.refresh();
@@ -46,7 +46,7 @@ const handleEditComment = async (e : React.FormEvent) => {
     e.preventDefault() ;
     try {
       setLoading(true)
-      const data = await axios.put(`${Domain}/comments/${comment.id}` , {
+      const data = await axios.put(`${Domain}/api/comments/${comment.id}` , {
         newText
       })
       if(data.status === 200) {
