@@ -24,9 +24,7 @@ const page = async ({ searchParams }: IsearchParams) => {
   const NbrOfPages = Math.ceil(Number(count) / 6);
 
   return (
-     <section className="">
        <ArticlesTable Articles={Articles} page={parseInt(page)} NbrOfPages={NbrOfPages} />
-     </section>
 
   ) 
 };

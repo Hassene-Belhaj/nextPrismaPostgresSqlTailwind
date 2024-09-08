@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-const MainSection = ({ order, imageSrc }: { order: string; imageSrc: string }) => {
+const Hero = ({ order, imageSrc }: { order: string; imageSrc: string }) => {
   const animation = useAnimation();
   const { inView, ref } = useInView();
 
@@ -49,4 +49,4 @@ const MainSection = ({ order, imageSrc }: { order: string; imageSrc: string }) =
   );
 };
 
-export default MainSection;
+export default Hero;

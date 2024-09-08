@@ -16,7 +16,7 @@ interface IsearchParams {
 
 const Articles = async ({ searchParams }: IsearchParams) => {
   //*
-  await new Promise((resolve) => setTimeout(resolve ,300));
+  // await new Promise((resolve) => setTimeout(resolve ,300));
 
   const { page } = searchParams;
   const data: Article[] | undefined = await allArticles(page);
